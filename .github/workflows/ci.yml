@@ -480,7 +480,7 @@ jobs:
   macos:
     needs: [docs-scope, changed-scope, check]
     if: github.event_name == 'pull_request' && needs.docs-scope.outputs.docs_only != 'true' && needs.changed-scope.outputs.run_macos == 'true'
-    runs-on: macos-latest
+    runs-on: macos-13
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -552,7 +552,7 @@ jobs:
 
   ios:
     if: false # ignore iOS in CI for now
-    runs-on: macos-latest
+    runs-on: macos-13
     steps:
       - name: Checkout
         uses: actions/checkout@v4
