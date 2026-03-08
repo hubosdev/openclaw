@@ -480,7 +480,7 @@ jobs:
   macos:
     needs: [docs-scope, changed-scope, check]
     if: github.event_name == 'pull_request' && needs.docs-scope.outputs.docs_only != 'true' && needs.changed-scope.outputs.run_macos == 'true'
-    runs-on: macos-latest
+    runs-on: macos-13
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -499,9 +499,9 @@ jobs:
         run: pnpm test
 
       # --- Xcode/Swift setup ---
-      - name: Select Xcode 26.1
+      - name: Select Xcode 15.3
         run: |
-          sudo xcode-select -s /Applications/Xcode_26.1.app
+          sudo xcode-select -s /Applications/Xcode_15.3.app
           xcodebuild -version
 
       - name: Install XcodeGen / SwiftLint / SwiftFormat
@@ -552,16 +552,16 @@ jobs:
 
   ios:
     if: false # ignore iOS in CI for now
-    runs-on: macos-latest
+    runs-on: macos-13
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: false
 
-      - name: Select Xcode 26.1
+      - name: Select Xcode 15.3
         run: |
-          sudo xcode-select -s /Applications/Xcode_26.1.app
+          sudo xcode-select -s /Applications/Xcode_15.3.app
           xcodebuild -version
 
       - name: Install XcodeGen
